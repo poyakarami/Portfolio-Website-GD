@@ -3,30 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Professional Game Developer Portfolio - Poya Karami. Creating immersive gaming experiences with Unity and Unreal Engine. Specializing in C#, C++, and 3D Design.">
-    <meta name="keywords" content="Game Developer, Unity, Unreal Engine, Game Design, 3D Modeling, C#, C++, Poya Karami, Portfolio, Gamedev">
+    <meta name="description" content="Professional Game Developer Portfolio - Creating immersive gaming experiences with Unity and Unreal Engine">
+    <meta name="keywords" content="Game Developer, Unity, Unreal Engine, Game Design, 3D Modeling, Programming">
     <meta name="author" content="Poya Karami">
-    <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Poya Karami - Game Developer">
+    <meta property="og:description" content="Creating immersive gaming experiences with cutting-edge technology">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://poyakarami.com/">
-    <meta property="og:title" content="Poya Karami | Professional Game Developer">
-    <meta property="og:description" content="Creating immersive gaming experiences with cutting-edge technology. View my portfolio of Unity and Unreal Engine projects.">
-    <meta property="og:image" content="assets/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://poyakarami.com/">
-    <meta property="twitter:title" content="Poya Karami | Professional Game Developer">
-    <meta property="twitter:description" content="Creating immersive gaming experiences with cutting-edge technology.">
-    <meta property="twitter:image" content="assets/og-image.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/favicon.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +28,7 @@
     <title>Poya Karami | Game Developer</title>
     
     <style>
-        /* Page-Specific Styles for Filter & Loader */
+        /* Additional page-specific styles */
         .project-filter {
             display: flex;
             justify-content: center;
@@ -65,32 +49,14 @@
             border-radius: var(--radius-md);
             cursor: pointer;
             transition: var(--transition-medium);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .filter-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-        
-        .filter-btn:hover::before {
-            left: 100%;
         }
         
         .filter-btn:hover,
         .filter-btn.active {
             background: var(--gradient-primary);
             border-color: transparent;
-            color: #fff;
+            color: var(--text-primary);
             box-shadow: var(--shadow-neon);
-            transform: translateY(-2px);
         }
         
         /* Loading Screen */
@@ -105,17 +71,12 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.5s ease;
         }
         
         .loading-screen.hidden {
             opacity: 0;
-            visibility: hidden;
             pointer-events: none;
-        }
-        
-        .loader-container {
-            text-align: center;
         }
         
         .loader {
@@ -125,59 +86,25 @@
             border-top-color: var(--neon-purple);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-            box-shadow: 0 0 20px rgba(176, 38, 255, 0.5);
-        }
-        
-        .loader-text {
-            font-family: var(--font-heading);
-            color: var(--neon-blue);
-            letter-spacing: 2px;
-            animation: pulse 1.5s infinite;
         }
         
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Utility for hidden elements during filter */
-        .project-card.hide {
-            display: none;
-        }
-        
-        .project-card.show {
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loading-screen">
-        <div class="loader-container">
-            <div class="loader"></div>
-            <div class="loader-text">LOADING SYSTEM...</div>
-        </div>
+        <div class="loader"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <i class="fas fa-gamepad" style="color: var(--neon-purple); margin-right: 8px;"></i>
-                dev<span style="color: var(--neon-blue);">Karami</span>
-            </a>
+            <a href="#" class="nav-logo">dev<span style="color: var(--neon-blue);">Karami</span></a>
             
-            <ul class="nav-menu" id="nav-menu">
+            <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -185,7 +112,7 @@
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             
-            <div class="nav-toggle" id="nav-toggle">
+            <div class="nav-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -196,23 +123,21 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-grid"></div>
-        <canvas id="particles-canvas"></canvas>
+        <canvas id="particles-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
         
         <div class="hero-content">
-            <div class="hero-badge animate-on-scroll">
-                <span class="pulse-dot"></span> Available for Hire
-            </div>
+            <div class="hero-badge">Available for Hire</div>
             
-            <h1 class="hero-title animate-on-scroll">
-                I'm <span class="txt-wrapper" style="color: var(--neon-blue); text-shadow: 0 0 20px rgba(0, 243, 255, 0.5);">Poya Karami</span>
+            <h1 class="hero-title">
+                I'm <span class="txt-wrapper">Poya Karami</span>
             </h1>
             
-            <p class="hero-subtitle animate-on-scroll">
+            <p class="hero-subtitle">
                 Passionate Game Developer crafting immersive worlds and unforgettable gaming experiences. 
-                Specializing in <strong style="color: var(--neon-purple);">Unity</strong> & <strong style="color: var(--neon-green);">Unreal Engine</strong> with 5+ years of industry expertise.
+                Specializing in Unity & Unreal Engine with 5+ years of industry expertise.
             </p>
             
-            <div class="hero-buttons animate-on-scroll">
+            <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary btn-large">
                     <i class="fas fa-gamepad"></i> View My Work
                 </a>
@@ -221,21 +146,21 @@
                 </a>
             </div>
             
-            <div class="hero-stats animate-on-scroll">
+            <div class="hero-stats">
                 <div class="stat-item">
-                    <span class="stat-number" data-target="50">0</span>
+                    <span class="stat-number" data-target="50">0+</span>
                     <span class="stat-label">Projects Completed</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-number" data-target="15">0+</span>
                     <span class="stat-label">Games Published</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="5">0</span>
+                    <span class="stat-number" data-target="5">0+</span>
                     <span class="stat-label">Years Experience</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-number" data-target="100">0+</span>
                     <span class="stat-label">Happy Clients</span>
                 </div>
             </div>
@@ -243,33 +168,23 @@
         
         <div class="scroll-indicator">
             <span>Scroll Down</span>
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about section" id="about">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2>About Me</h2>
-                <div class="title-line"></div>
-            </div>
-            
             <div class="about-grid">
                 <div class="about-image-wrapper animate-on-scroll">
-                    <div class="image-glow"></div>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Poya Karami - Game Developer" class="about-image">
                     <div class="about-image-frame"></div>
-                    <div class="experience-badge">
-                        <span class="years">5+</span>
-                        <span class="text">Years Exp.</span>
-                    </div>
                 </div>
                 
                 <div class="about-content animate-on-scroll">
-                    <h3 class="about-subtitle">Who I Am</h3>
+                    <h2>About Me</h2>
                     <p class="about-text">
                         I'm a passionate game developer with over 5 years of experience creating engaging 
                         and immersive gaming experiences. My journey began with a simple curiosity about 
@@ -320,17 +235,14 @@
                             </div>
                             <div>
                                 <span class="info-label">Availability</span>
-                                <span class="info-value" style="color: var(--neon-green); font-weight: bold;">Open to Work</span>
+                                <span class="info-value" style="color: var(--neon-green);">Open to Work</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div style="margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div style="margin-top: 2rem;">
                         <a href="#" class="btn btn-primary">
                             <i class="fas fa-download"></i> Download CV
-                        </a>
-                        <a href="#projects" class="btn btn-outline">
-                            <i class="fas fa-play"></i> View Showreel
                         </a>
                     </div>
                 </div>
@@ -341,16 +253,15 @@
     <!-- Projects Section -->
     <section class="projects section" id="projects">
         <div class="container">
-            <div class="section-header animate-on-scroll">
+            <div class="section-header">
                 <h2>Featured Projects</h2>
-                <div class="title-line"></div>
-                <p class="section-desc">
+                <p style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                     Explore my portfolio of games and interactive experiences. Each project showcases 
                     different aspects of game development from concept to launch.
                 </p>
             </div>
             
-            <div class="project-filter animate-on-scroll">
+            <div class="project-filter">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="unity">Unity</button>
                 <button class="filter-btn" data-filter="unreal">Unreal</button>
@@ -361,15 +272,7 @@
             <div class="grid grid-3">
                 <!-- Project 1 -->
                 <div class="project-card animate-on-scroll" data-category="unity">
-                    <div class="project-image-wrapper">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Cyber Odyssey" class="project-image">
-                        <div class="project-overlay">
-                            <div class="overlay-content">
-                                <a href="#" class="overlay-icon"><i class="fas fa-link"></i></a>
-                                <a href="#" class="overlay-icon"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Cyber Odyssey" class="project-image">
                     <div class="project-content">
                         <div class="project-tags">
                             <span class="project-tag">Unity</span>
@@ -381,45 +284,45 @@
                             A futuristic action-adventure game set in a neon-lit cyberpunk world. 
                             Features advanced AI systems and dynamic storytelling.
                         </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Project 2 -->
                 <div class="project-card animate-on-scroll" data-category="unreal">
-                    <div class="project-image-wrapper">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Shadow Realm" class="project-image">
-                        <div class="project-overlay">
-                            <div class="overlay-content">
-                                <a href="#" class="overlay-icon"><i class="fas fa-link"></i></a>
-                                <a href="#" class="overlay-icon"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Shadow Realm" class="project-image">
                     <div class="project-content">
                         <div class="project-tags">
-                            <span class="project-tag">Unreal 5</span>
+                            <span class="project-tag">Unreal Engine</span>
                             <span class="project-tag">C++</span>
                             <span class="project-tag">FPS</span>
                         </div>
                         <h3 class="project-title">Shadow Realm</h3>
                         <p class="project-description">
                             An intense first-person shooter with realistic physics and 
-                            stunning graphics powered by Unreal Engine 5 Nanite & Lumen.
+                            stunning graphics powered by Unreal Engine 5.
                         </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Project 3 -->
                 <div class="project-card animate-on-scroll" data-category="mobile">
-                    <div class="project-image-wrapper">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Puzzle Quest" class="project-image">
-                        <div class="project-overlay">
-                            <div class="overlay-content">
-                                <a href="#" class="overlay-icon"><i class="fas fa-link"></i></a>
-                                <a href="#" class="overlay-icon"><i class="fab fa-apple"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Puzzle Quest" class="project-image">
                     <div class="project-content">
                         <div class="project-tags">
                             <span class="project-tag">Unity</span>
@@ -429,22 +332,22 @@
                         <h3 class="project-title">Puzzle Quest</h3>
                         <p class="project-description">
                             A captivating mobile puzzle game with over 500 levels and 
-                            millions of downloads across iOS and Android platforms.
+                            millions of downloads across iOS and Android.
                         </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-mobile-alt"></i> Download
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-apple"></i> App Store
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Project 4 -->
                 <div class="project-card animate-on-scroll" data-category="vr">
-                    <div class="project-image-wrapper">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="VR Racing" class="project-image">
-                        <div class="project-overlay">
-                            <div class="overlay-content">
-                                <a href="#" class="overlay-icon"><i class="fas fa-link"></i></a>
-                                <a href="#" class="overlay-icon"><i class="fab fa-steam"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="VR Racing" class="project-image">
                     <div class="project-content">
                         <div class="project-tags">
                             <span class="project-tag">Unity</span>
@@ -456,62 +359,66 @@
                             An immersive virtual reality racing experience with 
                             realistic car physics and 360-degree environments.
                         </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-vr-cardboard"></i> Experience
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-video"></i> Trailer
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Project 5 -->
                 <div class="project-card animate-on-scroll" data-category="unity">
-                    <div class="project-image-wrapper">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Space Explorer" class="project-image">
-                        <div class="project-overlay">
-                            <div class="overlay-content">
-                                <a href="#" class="overlay-icon"><i class="fas fa-link"></i></a>
-                                <a href="#" class="overlay-icon"><i class="fab fa-steam"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Space Explorer" class="project-image">
                     <div class="project-content">
                         <div class="project-tags">
                             <span class="project-tag">Unity</span>
                             <span class="project-tag">Space</span>
-                            <span class="project-tag">Sim</span>
+                            <span class="project-tag">Simulation</span>
                         </div>
                         <h3 class="project-title">Space Explorer</h3>
                         <p class="project-description">
                             A space exploration simulation game with procedurally 
                             generated galaxies and realistic orbital mechanics.
                         </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-steam"></i> Steam
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Project 6 -->
                 <div class="project-card animate-on-scroll" data-category="unreal">
-                    <div class="project-image-wrapper">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Fantasy Kingdom" class="project-image">
-                        <div class="project-overlay">
-                            <div class="overlay-content">
-                                <a href="#" class="overlay-icon"><i class="fas fa-link"></i></a>
-                                <a href="#" class="overlay-icon"><i class="fas fa-globe"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpN8AuKA5rfA1RxF0lCbjGe6vgpKYUsqMH4w&s" alt="Fantasy Kingdom" class="project-image">
                     <div class="project-content">
                         <div class="project-tags">
-                            <span class="project-tag">Unreal</span>
+                            <span class="project-tag">Unreal Engine</span>
                             <span class="project-tag">RPG</span>
-                            <span class="project-tag">Online</span>
+                            <span class="project-tag">Multiplayer</span>
                         </div>
                         <h3 class="project-title">Fantasy Kingdom</h3>
                         <p class="project-description">
                             A massive multiplayer online RPG with epic quests, 
                             character customization, and vast open worlds.
                         </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Now
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-globe"></i> Website
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem;" class="animate-on-scroll">
-                <a href="#" class="btn btn-outline">View All Projects <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -519,10 +426,9 @@
     <!-- Skills Section -->
     <section class="skills section" id="skills">
         <div class="container">
-            <div class="section-header animate-on-scroll">
+            <div class="section-header">
                 <h2>Skills & Expertise</h2>
-                <div class="title-line"></div>
-                <p class="section-desc">
+                <p style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                     My technical skills and tools that I use to bring game ideas to life.
                 </p>
             </div>
@@ -531,7 +437,7 @@
                 <!-- Game Engines -->
                 <div class="skill-category animate-on-scroll">
                     <h3 class="skill-category-title">
-                        <i class="fas fa-cube" style="color: var(--neon-purple);"></i>
+                        <i class="fas fa-cube"></i>
                         Game Engines
                     </h3>
                     <div class="skill-list">
@@ -570,7 +476,7 @@
                 <!-- Programming Languages -->
                 <div class="skill-category animate-on-scroll">
                     <h3 class="skill-category-title">
-                        <i class="fas fa-code" style="color: var(--neon-blue);"></i>
+                        <i class="fas fa-code"></i>
                         Programming
                     </h3>
                     <div class="skill-list">
@@ -619,7 +525,7 @@
                 <!-- Design & Tools -->
                 <div class="skill-category animate-on-scroll">
                     <h3 class="skill-category-title">
-                        <i class="fas fa-paint-brush" style="color: var(--neon-pink);"></i>
+                        <i class="fas fa-paint-brush"></i>
                         Design & Tools
                     </h3>
                     <div class="skill-list">
@@ -658,16 +564,30 @@
             
             <!-- Tech Stack Icons -->
             <div class="tech-stack animate-on-scroll">
-                <div class="tech-item" title="Unity"><i class="fab fa-unity"></i></div>
-                <div class="tech-item" title="Unreal"><i class="fas fa-gamepad"></i></div>
-                <div class="tech-item" title="Windows"><i class="fab fa-windows"></i></div>
-                <div class="tech-item" title="Apple"><i class="fab fa-apple"></i></div>
-                <div class="tech-item" title="Android"><i class="fab fa-android"></i></div>
-                <div class="tech-item" title="PlayStation"><i class="fab fa-playstation"></i></div>
-                <div class="tech-item" title="Xbox"><i class="fab fa-xbox"></i></div>
-                <div class="tech-item" title="VR"><i class="fas fa-vr-cardboard"></i></div>
-                <div class="tech-item" title="Git"><i class="fab fa-git-alt"></i></div>
-                <div class="tech-item" title="Discord"><i class="fab fa-discord"></i></div>
+                <div class="tech-item">
+                    <i class="fab fa-unity"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-windows"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-android"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-playstation"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-xbox"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -675,10 +595,9 @@
     <!-- Contact Section -->
     <section class="contact section" id="contact">
         <div class="container">
-            <div class="section-header animate-on-scroll">
+            <div class="section-header">
                 <h2>Get In Touch</h2>
-                <div class="title-line"></div>
-                <p class="section-desc">
+                <p style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                     Have a project in mind or want to collaborate? Feel free to reach out!
                 </p>
             </div>
@@ -686,7 +605,7 @@
             <div class="contact-grid">
                 <div class="contact-info animate-on-scroll">
                     <h3>Contact Information</h3>
-                    <p>Let's discuss your next game project. I'm always excited to work on new challenges and bring ideas to life.</p>
+                    <p>Let's discuss your next game project. I'm always excited to work on new challenges.</p>
                     
                     <div class="contact-details">
                         <div class="contact-item">
@@ -721,12 +640,21 @@
                     </div>
                     
                     <div class="social-links">
-                        <a href="#" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link" title="Discord"><i class="fab fa-discord"></i></a>
-                        <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="social-link" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
                     </div>
                 </div>
                 
@@ -734,25 +662,21 @@
                     <div class="form-group">
                         <label class="form-label" for="name">Your Name</label>
                         <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
-                        <div class="input-border"></div>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="email">Your Email</label>
                         <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
-                        <div class="input-border"></div>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="subject">Subject</label>
                         <input type="text" id="subject" name="subject" class="form-input" placeholder="Project Inquiry">
-                        <div class="input-border"></div>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="message">Message</label>
-                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." rows="5" required></textarea>
-                        <div class="input-border"></div>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
                     </div>
                     
                     <button type="submit" class="btn btn-primary btn-large form-submit">
@@ -767,27 +691,17 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    dev<span style="color: var(--neon-blue);">Karami</span>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Leveling Up The Gaming World</p>
-                </div>
+                <div class="footer-logo">dev<span style="color: var(--neon-blue);">Karami</span></div>
                 
-                <div class="footer-links">
-                    <a href="#home" class="footer-link">Home</a>
-                    <a href="#about" class="footer-link">About</a>
-                    <a href="#projects" class="footer-link">Projects</a>
-                    <a href="#contact" class="footer-link">Contact</a>
-                </div>
+                <p class="footer-text">
+                    © 2024 Poya Karami. All rights reserved. Crafted with <i class="fas fa-heart" style="color: var(--neon-pink);"></i> and lots of coffee.
+                </p>
                 
-                <div class="footer-bottom">
-                    <p class="footer-text">
-                        © 2024 Poya Karami. All rights reserved. Crafted with <i class="fas fa-heart" style="color: var(--neon-pink); animation: pulse 2s infinite;"></i> and lots of coffee.
-                    </p>
-                    <div class="legal-links">
-                        <a href="#" class="legal-link">Privacy Policy</a>
-                        <a href="#" class="legal-link">Terms of Service</a>
-                    </div>
-                </div>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link">Terms of Service</a></li>
+                    <li><a href="#" class="footer-link">Sitemap</a></li>
+                </ul>
             </div>
         </div>
     </footer>
@@ -796,45 +710,15 @@
     <script src="js/main.js"></script>
     
     <script>
-        // Inline script for immediate loading screen control
+        // Hide loading screen when page is fully loaded
         window.addEventListener('load', function() {
             const loadingScreen = document.getElementById('loading-screen');
-            // Simulate minimum load time for smooth UX
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                    // Trigger initial animations after load
-                    if(window.initAnimations) window.initAnimations();
                 }, 500);
-            }, 1200);
-        });
-
-        // Project Filtering Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    // Add active class to clicked button
-                    btn.classList.add('active');
-                    
-                    const filterValue = btn.getAttribute('data-filter');
-                    
-                    projectCards.forEach(card => {
-                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                            card.classList.remove('hide');
-                            card.classList.add('show');
-                        } else {
-                            card.classList.remove('show');
-                            card.classList.add('hide');
-                        }
-                    });
-                });
-            });
+            }, 1000);
         });
     </script>
 </body>
