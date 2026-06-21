@@ -138,8 +138,6 @@ http-server -p 8000
 
 🔗 **[مشاهده دموی زنده](https://github.com/poyakarami/Portfolio-Website.git)**
 
-*(لینک دموی خود را جایگزین `YOUR_DEMO_LINK_HERE` کنید)*
-
 ---
 
 ## 🤖 ساخته‌شده با هوش مصنوعی
