@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Game Developer Portfolio - Creating immersive gaming experiences with Unity and Unreal Engine">
+    <meta name="keywords" content="Game Developer, Unity, Unreal Engine, Game Design, 3D Modeling, Programming">
+    <meta name="author" content="Alex Storm">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Alex Storm - Game Developer">
+    <meta property="og:description" content="Creating immersive gaming experiences with cutting-edge technology">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/sections.css">
+    
+    <title>Alex Storm | Game Developer</title>
+    
+    <style>
+        /* Additional page-specific styles */
+        .project-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-family: var(--font-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-medium);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--text-primary);
+            box-shadow: var(--shadow-neon);
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(176, 38, 255, 0.2);
+            border-top-color: var(--neon-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Storm<span style="color: var(--neon-blue);">Dev</span></a>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-grid"></div>
+        <canvas id="particles-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
+        
+        <div class="hero-content">
+            <div class="hero-badge">Available for Hire</div>
+            
+            <h1 class="hero-title">
+                I'm <span class="txt-wrapper">Alex Storm</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Passionate Game Developer crafting immersive worlds and unforgettable gaming experiences. 
+                Specializing in Unity & Unreal Engine with 5+ years of industry expertise.
+            </p>
+            
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary btn-large">
+                    <i class="fas fa-gamepad"></i> View My Work
+                </a>
+                <a href="#contact" class="btn btn-secondary btn-large">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="50">0+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="15">0+</span>
+                    <span class="stat-label">Games Published</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="5">0+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="100">0+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrapper animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=600&h=700&fit=crop" alt="Alex Storm - Game Developer" class="about-image">
+                    <div class="about-image-frame"></div>
+                </div>
+                
+                <div class="about-content animate-on-scroll">
+                    <h2>About Me</h2>
+                    <p class="about-text">
+                        I'm a passionate game developer with over 5 years of experience creating engaging 
+                        and immersive gaming experiences. My journey began with a simple curiosity about 
+                        how games work, and it has evolved into a career dedicated to pushing the boundaries 
+                        of interactive entertainment.
+                    </p>
+                    <p class="about-text">
+                        I specialize in Unity and Unreal Engine, with expertise in C++, C#, and various 
+                        game development frameworks. From indie projects to AAA titles, I've had the 
+                        privilege of working on diverse games across multiple platforms including PC, 
+                        Console, and Mobile.
+                    </p>
+                    
+                    <div class="about-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <span class="info-label">Name</span>
+                                <span class="info-value">Alex Storm</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="info-label">Email</span>
+                                <span class="info-value">alex@stormdev.com</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <span class="info-label">Location</span>
+                                <span class="info-value">Los Angeles, CA</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <span class="info-label">Availability</span>
+                                <span class="info-value" style="color: var(--neon-green);">Open to Work</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="#" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Explore my portfolio of games and interactive experiences. Each project showcases 
+                    different aspects of game development from concept to launch.
+                </p>
+            </div>
+            
+            <div class="project-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="unity">Unity</button>
+                <button class="filter-btn" data-filter="unreal">Unreal</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="vr">VR/AR</button>
+            </div>
+            
+            <div class="grid grid-3">
+                <!-- Project 1 -->
+                <div class="project-card animate-on-scroll" data-category="unity">
+                    <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=400&fit=crop" alt="Cyber Odyssey" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Unity</span>
+                            <span class="project-tag">C#</span>
+                            <span class="project-tag">3D</span>
+                        </div>
+                        <h3 class="project-title">Cyber Odyssey</h3>
+                        <p class="project-description">
+                            A futuristic action-adventure game set in a neon-lit cyberpunk world. 
+                            Features advanced AI systems and dynamic storytelling.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card animate-on-scroll" data-category="unreal">
+                    <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop" alt="Shadow Realm" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Unreal Engine</span>
+                            <span class="project-tag">C++</span>
+                            <span class="project-tag">FPS</span>
+                        </div>
+                        <h3 class="project-title">Shadow Realm</h3>
+                        <p class="project-description">
+                            An intense first-person shooter with realistic physics and 
+                            stunning graphics powered by Unreal Engine 5.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card animate-on-scroll" data-category="mobile">
+                    <img src="https://images.unsplash.com/photo-1551103782-8ab07afd45c1?w=600&h=400&fit=crop" alt="Puzzle Quest" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Unity</span>
+                            <span class="project-tag">Mobile</span>
+                            <span class="project-tag">2D</span>
+                        </div>
+                        <h3 class="project-title">Puzzle Quest</h3>
+                        <p class="project-description">
+                            A captivating mobile puzzle game with over 500 levels and 
+                            millions of downloads across iOS and Android.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-mobile-alt"></i> Download
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-apple"></i> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card animate-on-scroll" data-category="vr">
+                    <img src="https://images.unsplash.com/photo-1622979135225-d2ba269fb1bd?w=600&h=400&fit=crop" alt="VR Racing" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Unity</span>
+                            <span class="project-tag">VR</span>
+                            <span class="project-tag">Oculus</span>
+                        </div>
+                        <h3 class="project-title">VR Racing Championship</h3>
+                        <p class="project-description">
+                            An immersive virtual reality racing experience with 
+                            realistic car physics and 360-degree environments.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-vr-cardboard"></i> Experience
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-video"></i> Trailer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card animate-on-scroll" data-category="unity">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop" alt="Space Explorer" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Unity</span>
+                            <span class="project-tag">Space</span>
+                            <span class="project-tag">Simulation</span>
+                        </div>
+                        <h3 class="project-title">Space Explorer</h3>
+                        <p class="project-description">
+                            A space exploration simulation game with procedurally 
+                            generated galaxies and realistic orbital mechanics.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Demo
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fab fa-steam"></i> Steam
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card animate-on-scroll" data-category="unreal">
+                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&h=400&fit=crop" alt="Fantasy Kingdom" class="project-image">
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Unreal Engine</span>
+                            <span class="project-tag">RPG</span>
+                            <span class="project-tag">Multiplayer</span>
+                        </div>
+                        <h3 class="project-title">Fantasy Kingdom</h3>
+                        <p class="project-description">
+                            A massive multiplayer online RPG with epic quests, 
+                            character customization, and vast open worlds.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">
+                                <i class="fas fa-play"></i> Play Now
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-globe"></i> Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>Skills & Expertise</h2>
+                <p style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    My technical skills and tools that I use to bring game ideas to life.
+                </p>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Game Engines -->
+                <div class="skill-category animate-on-scroll">
+                    <h3 class="skill-category-title">
+                        <i class="fas fa-cube"></i>
+                        Game Engines
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Unity 3D/2D</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Unreal Engine 5</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Godot</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Programming Languages -->
+                <div class="skill-category animate-on-scroll">
+                    <h3 class="skill-category-title">
+                        <i class="fas fa-code"></i>
+                        Programming
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">C# / .NET</span>
+                                <span class="skill-percentage">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">C++</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="78"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">JavaScript</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Design & Tools -->
+                <div class="skill-category animate-on-scroll">
+                    <h3 class="skill-category-title">
+                        <i class="fas fa-paint-brush"></i>
+                        Design & Tools
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Blender / 3DS Max</span>
+                                <span class="skill-percentage">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Photoshop / Illustrator</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Git / Version Control</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tech Stack Icons -->
+            <div class="tech-stack animate-on-scroll">
+                <div class="tech-item">
+                    <i class="fab fa-unity"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-windows"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-android"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-playstation"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-xbox"></i>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p style="margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Have a project in mind or want to collaborate? Feel free to reach out!
+                </p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Contact Information</h3>
+                    <p>Let's discuss your next game project. I'm always excited to work on new challenges.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">alex@stormdev.com</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">+1 (555) 123-4567</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Los Angeles, CA</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="social-link" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <form class="contact-form animate-on-scroll" id="contact-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Your Email</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" placeholder="Project Inquiry">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large form-submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Storm<span style="color: var(--neon-blue);">Dev</span></div>
+                
+                <p class="footer-text">
+                    © 2024 Alex Storm. All rights reserved. Crafted with <i class="fas fa-heart" style="color: var(--neon-pink);"></i> and lots of coffee.
+                </p>
+                
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="#" class="footer-link">Terms of Service</a></li>
+                    <li><a href="#" class="footer-link">Sitemap</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Hide loading screen when page is fully loaded
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
